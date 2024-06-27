@@ -42,10 +42,90 @@ The Weather Application API provides real-time weather forecasts for cities glob
    ```bash
    mvn clean install
    ```
-3. **Run the Application**
+3. **Environment Variables Configuration Guide**
+
+## List of Environment Variables
+
+### Application Configuration
+
+- **SPRING_APPLICATION_NAME**: The name of the Spring Boot application.
+- **SPRING_DATASOURCE_URL**: JDBC URL for connecting to the database.
+- **SPRING_DATASOURCE_DRIVERCLASSNAME**: The class name of the JDBC driver.
+- **SPRING_DATASOURCE_USERNAME**: Username for database access.
+- **SPRING_DATASOURCE_PASSWORD**: Password for database access.
+- **SPRING_JPA_HIBERNATE_DDL_AUTO**: Hibernate configuration for schema management.
+- **WEATHER_API_URL**: Base URL for the OpenWeatherMap API.
+- **WEATHER_API_KEY**: API key for authenticating requests to the OpenWeatherMap API.
+
+## Setting Environment Variables
+
+### macOS/Linux
+
+Open your terminal and input the following commands to set the environment variables for the session:
+
+```bash
+export SPRING_APPLICATION_NAME=weather
+export SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
+export SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
+export SPRING_DATASOURCE_USERNAME=sa
+export SPRING_DATASOURCE_PASSWORD=
+export SPRING_JPA_HIBERNATE_DDL_AUTO=update
+export WEATHER_API_URL=https://api.openweathermap.org/data/2.5/
+export WEATHER_API_KEY=your-api-key-here
+```
+
+### Windows
+
+```bash
+set SPRING_APPLICATION_NAME=weather
+set SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
+set SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
+set SPRING_DATASOURCE_USERNAME=sa
+set SPRING_DATASOURCE_PASSWORD=
+set SPRING_JPA_HIBERNATE_DDL_AUTO=update
+set WEATHER_API_URL=https://api.openweathermap.org/data/2.5/
+set WEATHER_API_KEY=your-api-key-here
+```
+
+### Configuring Environment Variables in IntelliJ IDEA 🛠️
+
+When developing with IntelliJ IDEA, it's straightforward to set up environment variables directly in your IDE. Follow these steps to configure your environment variables within IntelliJ IDEA:
+
+1. **Open Your Project**: Start IntelliJ IDEA and open your project where the Spring Boot application is located.
+
+2. **Edit Configurations**: Navigate to the **Run** menu at the top of the IDE, then select **Edit Configurations...** from the dropdown menu.
+
+3. **Select Your Application**: In the left panel of the Run/Debug Configurations dialog, select your Spring Boot application configuration. If it’s not already there, you may need to add it by clicking the `+` icon and selecting **Spring Boot**.
+
+4. **Set Environment Variables**: In the configuration settings, find the **Environment variables** field. Click the browse button (the icon with three dots) to open the **Environment Variables** dialog.
+
+5. **Enter the Variables**: In the dialog that appears, you can add your environment variables. Use a semicolon `;` to separate different variables. Here is an example of how to format them:
+
+```bash
+SPRING_DATASOURCE_USERNAME=sa;SPRING_DATASOURCE_PASSWORD=;SPRING_JPA_HIBERNATE_DDL_AUTO=update;WEATHER_API_URL=https://api.openweathermap.org/data/2.5/;WEATHER_API_KEY=your-api-key-here
+```
+
+## Running the Application without Environment Variables Inline
+
    ```bash
    mvn spring-boot:run
    ```
+
+### Inline Environment Variable Setting
+
+You can run the Spring Boot application using the following command in your terminal. This command temporarily sets the environment variables just for the duration of the application session:
+
+```bash
+SPRING_APPLICATION_NAME=weather \
+SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb \
+SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver \
+SPRING_DATASOURCE_USERNAME=sa \
+SPRING_DATASOURCE_PASSWORD= \
+SPRING_JPA_HIBERNATE_DDL_AUTO=update \
+WEATHER_API_URL=https://api.openweathermap.org/data/2.5/ \
+WEATHER_API_KEY=your-api-key-here \
+mvn spring-boot:run
+```
    
 ## API Usage 🌐
 
@@ -129,73 +209,6 @@ curl -X GET "http://localhost:8080/api/cities/1" -H "Accept: application/json"
 ```bash
 # List all registered cities
 curl -X GET "http://localhost:8080/api/cities"
-```
-
-# Environment Variables Configuration Guide
-
-This document outlines the environment variables used in the Weather Application API, detailing their purpose, how to set them up in different operating systems, and how they are integrated into the application's configuration with default values.
-
-## List of Environment Variables
-
-### Application Configuration
-
-- **SPRING_APPLICATION_NAME**: The name of the Spring Boot application.
-- **SPRING_DATASOURCE_URL**: JDBC URL for connecting to the database.
-- **SPRING_DATASOURCE_DRIVERCLASSNAME**: The class name of the JDBC driver.
-- **SPRING_DATASOURCE_USERNAME**: Username for database access.
-- **SPRING_DATASOURCE_PASSWORD**: Password for database access.
-- **SPRING_JPA_HIBERNATE_DDL_AUTO**: Hibernate configuration for schema management.
-- **WEATHER_API_URL**: Base URL for the OpenWeatherMap API.
-- **WEATHER_API_KEY**: API key for authenticating requests to the OpenWeatherMap API.
-
-## Setting Environment Variables
-
-### macOS/Linux
-
-Open your terminal and input the following commands to set the environment variables for the session:
-
-```bash
-export SPRING_APPLICATION_NAME=weather
-export SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
-export SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
-export SPRING_DATASOURCE_USERNAME=sa
-export SPRING_DATASOURCE_PASSWORD=
-export SPRING_JPA_HIBERNATE_DDL_AUTO=update
-export WEATHER_API_URL=https://api.openweathermap.org/data/2.5/
-export WEATHER_API_KEY=your-api-key-here
-```
-
-### Windows
-
-```bash
-set SPRING_APPLICATION_NAME=weather
-set SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
-set SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
-set SPRING_DATASOURCE_USERNAME=sa
-set SPRING_DATASOURCE_PASSWORD=
-set SPRING_JPA_HIBERNATE_DDL_AUTO=update
-set WEATHER_API_URL=https://api.openweathermap.org/data/2.5/
-set WEATHER_API_KEY=your-api-key-here
-```
-
-### Configuring Environment Variables in IntelliJ IDEA 🛠️
-
-When developing with IntelliJ IDEA, it's straightforward to set up environment variables directly in your IDE. Follow these steps to configure your environment variables within IntelliJ IDEA:
-
--  Step-by-Step Guide
-
-1. **Open Your Project**: Start IntelliJ IDEA and open your project where the Spring Boot application is located.
-
-2. **Edit Configurations**: Navigate to the **Run** menu at the top of the IDE, then select **Edit Configurations...** from the dropdown menu.
-
-3. **Select Your Application**: In the left panel of the Run/Debug Configurations dialog, select your Spring Boot application configuration. If it’s not already there, you may need to add it by clicking the `+` icon and selecting **Spring Boot**.
-
-4. **Set Environment Variables**: In the configuration settings, find the **Environment variables** field. Click the browse button (the icon with three dots) to open the **Environment Variables** dialog.
-
-5. **Enter the Variables**: In the dialog that appears, you can add your environment variables. Use a semicolon `;` to separate different variables. Here is an example of how to format them:
-
-```bash
-SPRING_DATASOURCE_USERNAME=sa;SPRING_DATASOURCE_PASSWORD=;SPRING_JPA_HIBERNATE_DDL_AUTO=update;WEATHER_API_URL=https://api.openweathermap.org/data/2.5/;WEATHER_API_KEY=your-api-key-here
 ```
 
 ### :bust_in_silhouette: Author
