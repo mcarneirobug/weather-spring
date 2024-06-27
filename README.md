@@ -211,6 +211,48 @@ curl -X GET "http://localhost:8080/api/cities/1" -H "Accept: application/json"
 curl -X GET "http://localhost:8080/api/cities"
 ```
 
+## 📂 Project Architecture Overview
+
+The `com.pt.weather` package of our Weather Application is structured to clearly separate concerns, promote modularity, and enhance maintainability. Below is an overview of each package and its purpose within the application:
+
+### 📁 `config`
+- **Purpose**: Contains classes for configuration settings that customize the behavior of the Spring Boot application.
+
+### 📁 `controller`
+- **Purpose**: Houses the controller classes responsible for handling incoming HTTP requests and sending responses back to the client.
+
+### 📁 `exception`
+- **Purpose**: Includes classes for handling exceptions throughout the application.
+  - 📁 `advice`
+    - **ApiException, CityNotFoundException, InvalidCityException**: Custom exceptions that handle specific error scenarios, making error responses more informative and useful.
+
+### 📁 `model`
+- **Purpose**: Contains domain models used throughout the application.
+  - 📁 `dto`
+     Data Transfer Objects (DTOs) facilitate the transfer of data between processes, enhancing data encapsulation and API abstraction.
+
+### 📁 `repository`
+- **Purpose**: Encapsulates the logic required to access data sources, acting as a bridge between the database and the business logic.
+
+### 📁 `service`
+- **Purpose**: Core service layer that contains business logic.
+  - 📁 `impl`
+    - **CityService, CityValidationService, ForecastService**: Interfaces defining the contracts for services. Their implementations handle specific business rules and data transformations.
+
+### 📁 `util`
+- **Purpose**: Utilities and helpers that provide cross-cutting functionalities.
+
+
+## 🌐 High-Level Functionality
+
+- The **Controller** layer handles HTTP requests and delegates business processing to the Service layer.
+- The **Service** layer contains business logic and interacts with the Repository layer to fetch and store data.
+- The **Repository** layer abstracts the data access technology and provides methods to query and manipulate data in the database.
+- **Exception Handling** is centralized in the `exception` package, allowing for cleaner controllers and service methods.
+- **Configuration** settings are managed centrally to configure aspects like database connectivity, security, and custom behaviors.
+
+By maintaining this organized structure, our application ensures that each component has a single responsibility, aligns with the SOLID principles, and promotes easier testing and maintenance.
+
 ### :bust_in_silhouette: Author
 
 * Matheus Santos Rosa Carneiro - [mcarneirobug](https://github.com/mcarneirobug)
