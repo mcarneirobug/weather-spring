@@ -44,6 +44,7 @@ class CityControllerTest {
   private static final String PATH_CITIES_RESOURCE = "/api/cities";
   private static final String PATH_CITIES_ID       = "/api/cities/{id}";
   private static final String CITY_IS_NOT_VALID    = "City is not valid";
+  private static final String CITY_NAME_PARAM      = "cityName";
 
   @Mock
   private CityService cityService;
@@ -69,10 +70,8 @@ class CityControllerTest {
     given(cityService.createCity(cityName)).willReturn(cityResponse);
 
     // when
-    mockMvc.perform(post(PATH_CITIES_RESOURCE)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(cityName))
-        .andExpect(status().isCreated())
+    mockMvc.perform(post(PATH_CITIES_RESOURCE).param(CITY_NAME_PARAM, cityName)
+            .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated())
         .andExpect(jsonPath("$.name").value(cityName));
 
     // then
@@ -90,7 +89,7 @@ class CityControllerTest {
 
     // when
     mockMvc.perform(
-            post(PATH_CITIES_RESOURCE).contentType(MediaType.APPLICATION_JSON).content(cityName))
+            post(PATH_CITIES_RESOURCE).param(CITY_NAME_PARAM, cityName).contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isBadRequest()).andDo(print());
 
     // then
