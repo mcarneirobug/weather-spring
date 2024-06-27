@@ -50,6 +50,7 @@ public class Constants {
   public static final class LogMessage {
     public static final String CITY_NOT_FOUND                                  = "City not found: <{}>.";
     public static final String ERROR_OCCURRED_WHILE_FETCHING_FORECAST_FOR_CITY = "Error occurred while fetching forecast for city <{}>: <{}>.";
+    public static final String ERROR_OCCURRED_PROCESSING_REQUEST               = "Error occurred processing request [{}]: {}";
   }
 
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -66,5 +67,13 @@ public class Constants {
     public static final String INVALID_REQUEST_PARAMETER_TITLE              = "Invalid Request Parameter";
     public static final String FORECAST_INSTANCE                            = "/api/forecast/";
     public static final String THE_DAYS_PARAMETER_MUST_BE_EITHER_3_OR_5     = "The 'days' parameter must be either 3 or 5.";
+  }
+
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  public static final class GlobalException {
+    public static final String INTERNAL_SERVER_ERROR_TITLE                         = "Internal Server Error";
+    public static final String AN_UNEXPECTED_ERROR_OCCURRED_PLEASE_TRY_AGAIN_LATER = "An unexpected error occurred. Please try again later.";
+    public static final String BAD_REQUEST_TITLE                                   = "Bad Request";
+    public static final String NOT_FOUND_TITLE                                     = "Not Found";
   }
 }
