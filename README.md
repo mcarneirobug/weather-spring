@@ -2,6 +2,9 @@
     <span href="">Weather Application API</span>
 </h1>
 
+![Badge](https://img.shields.io/github/languages/top/mcarneirobug/weather-spring)
+![Badge](https://img.shields.io/github/last-commit/mcarneirobug/weather-spring)
+
 ### 💻 About  
 
 The Weather Application API provides real-time weather forecasts for cities globally. This service is designed to be efficient and robust, utilizing the OpenWeatherMap API to fetch weather data.
